@@ -28,9 +28,9 @@
 			</label>
 		</div>
 
-		<div class="container" style="background-color: #f1f1f1">
-			<button type="button" class="cancelbtn">Cancel</button>
+		<div class="container" style="background-color: #7F7F7F">
 			<span class="psw">Forgot <a href="#">password?</a></span>
+			<button type="button" onclick="window.location.href='/WebProg_chieut2/register';">Sign Up</button>
 		</div>
 	</form>
 </body>

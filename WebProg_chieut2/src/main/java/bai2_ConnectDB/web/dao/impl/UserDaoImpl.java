@@ -47,7 +47,7 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao{
 
 	@Override
 	public void insert(UserModel user) {
-		String sql = "INSERT INTO users( username, email, passwd, fullname, img) VALUES ( ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO users( username, email, passwd, fullname, img, roleid, phone, createdate) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn = super.getConnection();
 			ps = conn.prepareStatement(sql);
@@ -56,7 +56,10 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao{
 			ps.setString(2, user.getEmail());
 			ps.setString(3, user.getPasswd());
 			ps.setString(4, user.getFullname());
-			ps.setString(5,user.getImage() );
+			ps.setString(5, user.getImage() );
+			ps.setInt	(6, user.getRole_id());
+			ps.setString(7, user.getPhoneNo());
+			ps.setDate	(8, user.getCreate_date());
 			ps.executeUpdate();
 //			
 			
@@ -117,6 +120,55 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao{
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public boolean checkExistEmail(String email) {
+		boolean duplicate = false;		//biến cờ hiệu cho biết có bị trùng email đã tồn tại hay không.
+		String query = "SELECT * FROM users WHERE email = ?";
+		try {
+			conn = new DBConnectSQL().getConnection();
+			ps = conn.prepareStatement(query);
+			ps.setString(1, email);			//1 la so thu tu cua cac tham so (Cai dau ? tren tinh tu trai sang phai 1->n)
+			rs = ps.executeQuery();
+			if (rs.next()) {
+			duplicate = true;
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return duplicate;
+	}
+
+	@Override
+	public boolean checkExistUsername(String username) {
+		boolean duplicate = false;
+
+		UserModel user = findByUserName(username);
+		if(user != null ) duplicate = true;
+		return duplicate;
+		
+	}
+
+	@Override
+	public boolean checkExistPhone(String phone) {
+		boolean duplicate = false;
+		String query = "SELECT * FROM users WHERE phone = ?";
+		try {
+			conn = new DBConnectSQL().getConnection();
+			ps = conn.prepareStatement(query);
+			ps.setString(1, phone);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+			duplicate = true;
+			}
+			ps.close();
+			conn.close();
+			} catch (Exception ex) {}
+			return duplicate;
+
 	}
 	
 		

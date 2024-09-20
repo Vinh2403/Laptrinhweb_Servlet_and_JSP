@@ -9,5 +9,8 @@ public interface IUserDao {
 	UserModel findById(int id);	//Lay 1 user
 	void insert(UserModel user);
 	UserModel findByUserName(String username);	//dang nhap bang username
-	
+	boolean checkExistEmail(String email);
+	boolean checkExistUsername(String username);
+	boolean checkExistPhone(String phone);
+
 }
