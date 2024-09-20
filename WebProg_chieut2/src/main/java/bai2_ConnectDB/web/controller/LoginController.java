@@ -23,7 +23,26 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+		//req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+		HttpSession session = req.getSession(false);
+		if (session != null && session.getAttribute("account") != null) {
+		resp.sendRedirect(req.getContextPath()+ "/waiting");
+		return;
+		}
+		// Check cookie
+		Cookie[] cookies = req.getCookies();
+		if (cookies != null) {
+		for (Cookie cookie : cookies) {
+		if (cookie.getName().equals("username")) {
+		session = req.getSession(true);
+		session.setAttribute("username", cookie.getValue());
+		resp.sendRedirect(req.getContextPath()+ "/waiting");
+		return;
+			}
+		}
+		}
+		req.getRequestDispatcher("views/login.jsp").forward(req, resp);
+		
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -60,7 +79,8 @@ public class LoginController extends HttpServlet {
 			 }
 
 			 resp.sendRedirect(req.getContextPath()+"/waiting");
-			 }else{
+			 }
+		else{
 			 alertMsg =
 					 "Tài khoản hoặc mật khẩu không đúng";
 			 req.setAttribute("alert", alertMsg);
@@ -70,7 +90,7 @@ public class LoginController extends HttpServlet {
 			 }
 	private void saveRemeberMe(HttpServletResponse resp, String username) {
 			Cookie cookie = new Cookie(Constant.COOKIE_REMEMBER, username);
-			cookie.setMaxAge(30*60);
+			cookie.setMaxAge(30*60);		//Thoi gian song cua cookie
 			resp.addCookie(cookie);
 		 
 			}

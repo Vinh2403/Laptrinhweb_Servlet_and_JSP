@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 style="color: blueviolet">This is Manager's home page </h1>
+<h1 style="color: blueviolet">This is Manager's home page ${username}</h1>
 </body>
 </html>
