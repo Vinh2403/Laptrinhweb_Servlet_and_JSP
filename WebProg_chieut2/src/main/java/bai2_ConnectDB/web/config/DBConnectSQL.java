@@ -15,12 +15,13 @@ private final String portNumber = "1433";
 private final String instance ="";	//MSSQLSERVER LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
 private final String userID = "sa";
 private final String password = "123";
-public  Connection getConnection()
+public  Connection getConnection() throws ClassNotFoundException
 {
 	Connection conn = null;
-	//jdk 20 roi ko can dang ky driver nua. Nhung ma hoc cho biet thoai!!!
+	//jdk 20 roi ko can dang ky driver nua. 
 	
 	try {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + "\\" + instance + ";databaseName=" + dbName+";encrypt=true;trustServerCertificate=true;";
 		if (instance == null || instance.trim().isEmpty())
 			url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName+";encrypt=true;trustServerCertificate=true;";

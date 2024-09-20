@@ -67,20 +67,20 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao{
 		}
 		
 	}
-	public static void main(String[] args)
-	{
-		UserDaoImpl userDao = new UserDaoImpl();
-	//	userDao.insert(new UserModel("tanthc", "tan123@gmail.com", "1224","tang huynh chi tan","https://myimg2.com"));
-		
-//		List<UserModel> list = userDao.findAll();
-//		if(list != null)
-//			for (UserModel user : list)
-//			{
-//					System.out.println(user);
-//			}
-		UserModel user = userDao.findByUserName("Tien");
-		System.out.println(user);
-	}
+//	public static void main(String[] args)
+//	{
+//		UserDaoImpl userDao = new UserDaoImpl();
+//	//	userDao.insert(new UserModel("tanthc", "tan123@gmail.com", "1224","tang huynh chi tan","https://myimg2.com"));
+//		
+////		List<UserModel> list = userDao.findAll();
+////		if(list != null)
+////			for (UserModel user : list)
+////			{
+////					System.out.println(user);
+////			}
+//		UserModel user = userDao.findByUserName("Vinh");
+//		System.out.println(user);
+//	}
 
 	@Override
 	public UserModel findByUserName(String username) {
@@ -101,7 +101,7 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao{
 				user.setFullname(rs.getString("fullname"));
 				user.setPasswd(rs.getString("passwd"));
 				user.setImage(rs.getString("img"));
-				user.setRole_id(rs.getString("roleid"));
+				user.setRole_id(rs.getInt("roleid"));
 				user.setPhoneNo(rs.getString("phone"));
 				user.setCreate_date(rs.getDate("createdate"));
 				return user;

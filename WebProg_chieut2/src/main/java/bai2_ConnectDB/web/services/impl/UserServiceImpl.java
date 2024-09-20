@@ -13,7 +13,9 @@ public class UserServiceImpl implements IUserService {
 		
 		UserModel user = this.findByUserName(username);
 		if(user != null && password.equals(user.getPasswd()))		//kiem tra xem cai duoc nhap tu form va database co giong nhau khong.
-			return user;
+			{
+			System.out.println(user.getUsername());
+			return user;}
 		return null;
 	}
 

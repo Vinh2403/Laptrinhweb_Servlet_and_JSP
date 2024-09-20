@@ -17,7 +17,7 @@ public class UserModel implements Serializable{
 			super();
 		}
 		public UserModel(int id, String username, String email, String passwd, String fullname, String image,
-				String role_id, String phoneNo, Date create_date) {
+				int role_id, String phoneNo, Date create_date) {
 			super();
 			this.id = id;
 			this.username = username;
@@ -45,7 +45,7 @@ public class UserModel implements Serializable{
 		private String passwd;
 		private String fullname;
 		private String image;
-		private String role_id;
+		private int role_id;
 		private String phoneNo;
 		private Date create_date;
 		//tao getter & setter
@@ -86,10 +86,10 @@ public class UserModel implements Serializable{
 		public void setImage(String image) {
 			this.image = image;
 		}
-		public String getRole_id() {
+		public int getRole_id() {
 			return role_id;
 		}
-		public void setRole_id(String role_id) {
+		public void setRole_id(int role_id) {
 			this.role_id = role_id;
 		}
 		public String getPhoneNo() {
