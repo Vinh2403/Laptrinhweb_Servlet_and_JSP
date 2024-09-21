@@ -17,9 +17,6 @@ import jakarta.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 	IUserService service = new UserServiceImpl();		//de global de dung trong tat ca cac method.
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
