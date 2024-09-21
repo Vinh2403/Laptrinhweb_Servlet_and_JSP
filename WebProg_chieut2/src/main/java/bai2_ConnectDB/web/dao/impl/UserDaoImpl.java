@@ -170,6 +170,27 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao{
 			return duplicate;
 
 	}
+
+	@Override
+	public void UpdatePasswd(String Username, String NewPassword) {
+		String sql = "UPDATE users SET passwd = ? WHERE username = ?";
+		try {
+			conn = super.getConnection();
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, NewPassword );
+			ps.setString(2, Username);
+			
+			ps.executeUpdate();
+//			
+			
+			
+					
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
 	
 		
 }

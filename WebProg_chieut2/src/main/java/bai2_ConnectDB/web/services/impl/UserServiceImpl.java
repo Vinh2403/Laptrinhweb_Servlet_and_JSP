@@ -59,4 +59,10 @@ public class UserServiceImpl implements IUserService {
 
 	}
 
+	@Override
+	public void UpdatePsw(String Username, String NewPass) {
+		userDao.UpdatePasswd(Username, NewPass);
+		
+	}
+
 }

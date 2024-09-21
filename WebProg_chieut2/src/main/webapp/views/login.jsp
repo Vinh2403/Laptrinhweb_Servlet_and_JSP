@@ -29,8 +29,9 @@
 		</div>
 
 		<div class="container" style="background-color: #7F7F7F">
-			<span class="psw">Forgot <a href="#">password?</a></span>
+			<span class="psw"> <a href="/WebProg_chieut2/ForgotPassword">Forgot password?</a></span>
 			<button type="button" onclick="window.location.href='/WebProg_chieut2/register';">Sign Up</button>
+
 		</div>
 	</form>
 </body>
